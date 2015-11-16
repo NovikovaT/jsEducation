@@ -1,0 +1,6 @@
+{
+  "name": "js-education",
+  "devDependencies": {
+    "jquery": "~2.1.4"
+  }
+}
