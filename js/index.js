@@ -25,8 +25,8 @@ function initNav(parent) {
 
   ////// end
 
-  
-
+  [ <a href="#q">0</a>, <a href="#q">1</a>][0]  = > <a href="#q">0</a>
+  eq([ <a href="#q">0</a>, <a href="#q">1</a>][0]  = > [<a href="#q">0</a>]
   ////// start
   $.each(items, function(i, item) {
     var href = $(item).attr('href');
@@ -42,6 +42,12 @@ function initNav(parent) {
   //console.log(locationIndex);
 
   
+}
+
+
+function eq(items, i) {
+  var item = items[i];
+  return $(item);
 }
 
 // each([1,2,3], function(arg1, arg2, arg3) {
