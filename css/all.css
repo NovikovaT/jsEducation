@@ -1,0 +1,33 @@
+*{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  font: 12px Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+}
+nav,
+header {display: block;}
+
+#header {
+  padding: 15px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#nav { text-align: center; }
+#nav li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 16px;
+}
+#nav .active a{background: #f00;}
+.sub-nav .current a{background: #f00;}
