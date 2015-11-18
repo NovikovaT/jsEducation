@@ -1,64 +1,61 @@
 $(function () {
   initNav('#nav');
-  //initNav($('.sub-nav'));
+  myTabs('.tabs', 'active','is-visible');
 });
 
 
-function initNav(parent) {
+function initNav(parent, activeClass) {
   var location = window.location.href,
       items = $(parent).find('a');
 
+  activeClass = activeClass || 'active';
 
-  ////// start
-  // var i;
-
-
-  // for (i=0; i<items.length; i++) {
-  //   var item = items.eq(i);
-  //   var href = item.attr('href');
-  //   var locationIndex = location.indexOf(href);
-
-  //   if (locationIndex!=-1) {
-  //     item.closest('li').addClass('active');
-  //   }
-  // }
-
-  ////// end
-
-  [ <a href="#q">0</a>, <a href="#q">1</a>][0]  = > <a href="#q">0</a>
-  eq([ <a href="#q">0</a>, <a href="#q">1</a>][0]  = > [<a href="#q">0</a>]
-  ////// start
-  $.each(items, function(i, item) {
+  items.filter(function(i, item) {
     var href = $(item).attr('href');
     var locationIndex = location.indexOf(href);
+    return (locationIndex != -1);
+  }).closest('li').addClass(activeClass);
 
-    if (locationIndex != -1) {
-      $(item).closest('li').addClass('active');
-    }
+
+  // $.each(items, function(i, item) {
+  //   var href = $(item).attr('href');
+  //   var locationIndex = location.indexOf(href);
+
+  //   if (locationIndex != -1) {
+  //     $(item).closest('li').addClass(activeClass);
+  //   }
+  // });  
+}
+
+function myTabs(tabset, activeClass, isVisibleClass) {
+  var links, tabs;
+
+  tabset = $(tabset);
+  links = tabset.find('[data-target]');
+  tabs = $('[data-tab]');
+
+  activate(links.eq(0));
+
+  links.on('click', function() {
+    var link = $(this);
+    activate(link);
   });
-  ////// end
 
+  function activate(link) {
+    var target = link.data('target'); //'tab1'
 
-  //console.log(locationIndex);
+    links.removeClass(activeClass);
+    link.addClass(activeClass);
 
-  
+    $.each(tabs, function(i, tab) {
+      var tabName = $(tab).data('tab');
+
+      if(target === tabName) {
+        $(tab).addClass(isVisibleClass);
+      } else {
+        $(tab).removeClass(isVisibleClass);
+      }
+    });
+  }
 }
 
-
-function eq(items, i) {
-  var item = items[i];
-  return $(item);
-}
-
-// each([1,2,3], function(arg1, arg2, arg3) {
-//   console.log(arg1, arg2, arg3); // 1, 0, [1,2,3]
-// });
-
-
-// function each(collection, callback) {
-//   var i, el;
-//   for (i = 0; i < collection.length; i++) {
-//     el = collection[i];
-//     callback(i, el, collection);
-//   }
-// }
